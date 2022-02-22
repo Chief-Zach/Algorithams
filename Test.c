@@ -25,11 +25,11 @@ void printList(node * n) {
     printf("\n%d\n", n->data);
 }
 
-void append(struct node** head_ref, int new_data) {
+void append(node* *head_ref, int new_data) {
     /* 1. allocate node */
-    node* new_node = (struct node*) malloc(sizeof(node));
+    node* new_node = (node*) malloc(sizeof(node));
 
-    node *last = *head_ref;  /* used in step 5*/
+    node* last = *head_ref;  /* used in step 5*/
 
     /* 2. put in the data  */
     new_node->data  = new_data;
@@ -53,15 +53,17 @@ void append(struct node** head_ref, int new_data) {
 }
 
 int main(void) {
-    char names[] = {"sam"};
-
     node * head = NULL;
     node * second = NULL;
     node * third = NULL;
+    node * new_node = NULL;
+
 
     head = (node*) malloc(sizeof(node));
     second = (node*) malloc(sizeof(node));
     third = (node*) malloc(sizeof(node));
+    new_node = (node*) malloc(sizeof(node));
+
 
     head->data = 1;
     head->next = second;
@@ -72,9 +74,16 @@ int main(void) {
     third->data = 3;
     third->next = NULL;
 
-    append(&head, 5);
+    third->data = 99;
+    third->next = NULL;
 
-    printf("%p\n", &head);
+    append(&new_node, 5);
+    append(&new_node, 8);
+    append(&new_node, 7);
+    append(&new_node, 6);
+
+
     printListW(head);
     printList(head);
+
 }
